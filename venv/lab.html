@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>login test</title>
+</head>
+<body>
+<div data-vide-bg="{% static "video/color1" %}">
+    <div class="center-container">
+        <div class="header-w3l">
+        </div>
+        <div class="main-content-agile">
+            <div class="wthree-pro">
+                <h2>页面自动化</h2>
+            </div>
+            <div class="sub-main-w3">
+                <form action="#" method="post">
+                    <input name="user_name" type="text" required="">
+
+                    <input placeholder="Password" name="user_pwd" type="password" required="">
+
+                    <input type="submit" value="登录" onclick="user_login(); return false">
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "js/jquery.vide.min.js" %}"></script>
+<script>
+    function user_login() {
+        $.ajax({
+            type: "POST",//为post请求
+            url: "/login/",//后台接受数据方法
+            data: $('form').serialize(),//将数据序列化
+            error: function (request) {//请求失败之后的操作
+                console.log("error");
+                alert("系统错误")
+            },
+            success: function (data) {//请求成功之后的操作
+                console.log("success");
+                data = JSON.parse(data);
+                console.log(data);
+                if(data["result"] === 0){
+                    window.location.href = "http://www.hylee.xyz/i" + username +".ics";//成功之后跳转页面
+                }else {
+                    alert(data["usr_data"])//失败弹出后台返回的失败信息
+                }
+
+               }
+        });
+    }
+
+</script>
+</body>
+</html>
