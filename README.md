@@ -1,4 +1,4 @@
-# jwxtToiCloud
+# UPC-ics
 Put jwxt class table to iCloud iCalendar
 教务系统将课表导入iCloud并用作日历
 Please open test1.py in folder venv
